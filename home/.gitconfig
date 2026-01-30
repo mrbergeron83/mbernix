@@ -1,0 +1,12 @@
+[user]
+	name = mrbergeron83
+	email = mr.bergeron83@gmail.com
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = nano
+
+[pull]
+	rebase = false
