@@ -88,7 +88,8 @@
     nodejs_24
     bun
     google-chrome
-    kitty
+    alacritty
+    tmux
     wofi
     xterm
   ];
