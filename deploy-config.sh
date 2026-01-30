@@ -39,3 +39,11 @@ done
 echo ""
 echo "Configuration files linked successfully!"
 echo "Changes to repo files will now apply immediately."
+
+# Load GNOME settings from dconf dump
+if [ -f "$SOURCE_HOME/gnome-settings.dconf" ]; then
+    echo ""
+    echo "Loading GNOME settings..."
+    dconf load / < "$SOURCE_HOME/gnome-settings.dconf"
+    echo "GNOME settings loaded."
+fi
