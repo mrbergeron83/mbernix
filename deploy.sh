@@ -11,6 +11,9 @@ deploy_home() {
     mkdir -p ~/.config/alacritty
     mkdir -p ~/.config/hypr
 
+    # Fix ownership if needed (files may be root-owned from previous sudo operations)
+    sudo chown -R "$USER:users" ~/.config/alacritty ~/.config/hypr 2>/dev/null || true
+
     # Copy home dotfiles
     [ -f "$HOME_SRC/.gitconfig" ] && cp "$HOME_SRC/.gitconfig" ~/.gitconfig
 
