@@ -1,3 +1,6 @@
+[selection]
+save_to_clipboard = true
+
 [window]
 padding = { x = 10, y = 10 }
 opacity = 0.95
@@ -31,3 +34,8 @@ blue    = "#89b4fa"
 magenta = "#f5c2e7"
 cyan    = "#94e2d5"
 white   = "#a6adc8"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control"
+action = "Paste"

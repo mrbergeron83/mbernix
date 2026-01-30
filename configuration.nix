@@ -90,13 +90,26 @@
     google-chrome
     alacritty
     tmux
-    wofi
+    walker
+    waybar
     xterm
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.hyprland.enable = true;
+
+  # Zsh with oh-my-zsh
+  programs.zsh = {
+    enable = true;
+    ohMyZsh = {
+      enable = true;
+      plugins = [ "git" "history" "zsh-autosuggestions" ];
+    };
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+  };
+  users.defaultUserShell = pkgs.zsh;
 
   # nix-ld for running pre-built binaries (e.g., Claude)
   programs.nix-ld.enable = true;
