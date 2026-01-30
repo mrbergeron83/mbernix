@@ -27,7 +27,7 @@ shopt -u dotglob
 # Ensure ~/.config exists
 mkdir -p "$TARGET_HOME/.config"
 
-# Symlink each subdirectory inside .config
+# Symlink each item (file or directory) inside .config
 for item in "$SOURCE_HOME/.config"/*; do
     if [ -e "$item" ]; then
         basename_item=$(basename "$item")
@@ -47,10 +47,3 @@ echo ""
 echo "Configuration files linked successfully!"
 echo "Changes to repo files will now apply immediately."
 
-# Load GNOME settings from dconf dump
-if [ -f "$SOURCE_HOME/gnome-settings.dconf" ]; then
-    echo ""
-    echo "Loading GNOME settings..."
-    dconf load / < "$SOURCE_HOME/gnome-settings.dconf"
-    echo "GNOME settings loaded."
-fi

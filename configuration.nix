@@ -93,7 +93,6 @@
     dotnet-sdk_10
     grim
     slurp
-    gnome-tweaks
   ];
 
   # Zsh with oh-my-zsh
@@ -134,11 +133,11 @@
   # services.openssh.enable = true;
   services.dbus.enable = true;
 
-  # GNOME Desktop with GDM on Wayland
+  # KDE Plasma 6 with SDDM on Wayland
   services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = true;
-  services.xserver.desktopManager.gnome.enable = true; 
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true; 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -168,14 +167,11 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   security.polkit.enable = true;
-  # GNOME includes its own polkit agent
+  # KDE includes its own polkit agent
 
   system.stateVersion = "25.11"; # Did you read the comment?
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = with pkgs; [
-    xdg-desktop-portal-gnome
-  ];
 }
 

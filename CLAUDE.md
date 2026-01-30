@@ -9,17 +9,11 @@ Personal NixOS system configuration and dotfiles repository. Manages system-leve
 ## Deployment Commands
 
 ```bash
-# First-time setup: creates symlinks, loads GNOME settings, and rebuilds NixOS
+# First-time setup: creates symlinks and rebuilds NixOS
 ./deploy.sh
 
 # After setup, for NixOS changes (configuration.nix):
 sudo nixos-rebuild switch
-
-# To save current GNOME settings:
-dconf dump / > home/gnome-settings.dconf
-
-# To load GNOME settings:
-dconf load / < home/gnome-settings.dconf
 ```
 
 ## Architecture
@@ -31,12 +25,11 @@ dconf load / < home/gnome-settings.dconf
   - `.gitconfig` - Git configuration
   - `.zshrc` - Zsh configuration
   - `.config/alacritty/alacritty.toml` - Terminal config (Catppuccin Mocha theme)
-  - `gnome-settings.dconf` - GNOME desktop settings (loaded via dconf)
 
 ## Stack
 
 - NixOS 25.11 with flakes enabled
-- GNOME Desktop (Wayland) with GDM
+- KDE Plasma 6 (Wayland) with SDDM
 - Alacritty + tmux + zsh (oh-my-zsh with autosuggestions)
 - Catppuccin Mocha theme throughout
 - nix-ld for pre-built binaries (Claude, etc.)
