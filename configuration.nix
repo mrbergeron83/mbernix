@@ -95,6 +95,7 @@
     walker
     waybar
     xterm
+    catppuccin-cursors.mochaDark
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

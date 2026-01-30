@@ -2,16 +2,17 @@
 
 set -e
 
-echo "Copying configuration files to /etc/nixos/..."
-sudo cp configuration.nix /etc/nixos/configuration.nix
-sudo cp hardware-configuration.nix /etc/nixos/hardware-configuration.nix
-sudo cp nvidia.nix /etc/nixos/nvidia.nix
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-echo "Copying home configuration files..."
-cp -r home/.config/* ~/.config/
-cp home/.gitconfig ~/.gitconfig
+echo "Linking NixOS configuration to /etc/nixos/..."
+sudo ln -sfn "$SCRIPT_DIR/configuration.nix" /etc/nixos/configuration.nix
+sudo ln -sfn "$SCRIPT_DIR/hardware-configuration.nix" /etc/nixos/hardware-configuration.nix
+sudo ln -sfn "$SCRIPT_DIR/nvidia.nix" /etc/nixos/nvidia.nix
 
-echo "Deploying NixOS configuration..."
-sudo nixos-rebuild switch --option experimental-features "nix-command flakes"
+echo "Linking home configuration files..."
+"$SCRIPT_DIR/deploy-config.sh"
+
+echo "Rebuilding NixOS..."
+sudo nixos-rebuild switch
 
 echo "Deployment complete!"

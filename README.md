@@ -10,37 +10,34 @@ Personal NixOS configuration and dotfiles.
 - **Launcher:** walker
 - **Theme:** Catppuccin Mocha
 
-## Usage
+## Setup
 
-### Full System Deploy
-
-Copies configuration to `/etc/nixos/` and rebuilds NixOS:
+First-time setup creates symlinks and rebuilds NixOS:
 
 ```bash
 ./deploy.sh
 ```
 
-### User Config Only
-
-Deploys dotfiles from `home/` to `~/` without system rebuild:
-
-```bash
-./deploy-config.sh
-```
+After initial setup:
+- **NixOS changes** (configuration.nix): `sudo nixos-rebuild switch`
+- **Home configs** (hyprland, waybar, etc.): Changes apply immediately (symlinked)
 
 ## Structure
 
 ```
 .
-├── configuration.nix      # NixOS system configuration
-├── hardware-configuration.nix  # Hardware config (auto-generated)
-├── deploy.sh              # Full system deploy script
-├── deploy-config.sh       # User config deploy script
-└── home/                  # User dotfiles
+├── configuration.nix          # NixOS system configuration
+├── hardware-configuration.nix # Hardware config (auto-generated)
+├── nvidia.nix                 # NVIDIA GPU auto-detection
+├── deploy.sh                  # Full system deploy (symlinks + rebuild)
+├── deploy-config.sh           # User config symlinks only
+└── home/                      # User dotfiles (symlinked to ~/)
     ├── .gitconfig
+    ├── .zshrc
     └── .config/
-        ├── alacritty/
-        └── hypr/
+        ├── alacritty/         # Terminal config
+        ├── hypr/              # Hyprland config
+        └── waybar/            # Taskbar config
 ```
 
 ## Hyprland Keybindings
@@ -48,6 +45,10 @@ Deploys dotfiles from `home/` to `~/` without system rebuild:
 | Key | Action |
 |-----|--------|
 | Super + Return | Terminal (Alacritty) |
-| Super + 0 | App launcher (walker) |
+| Super + Space | App launcher (walker) |
+| Super + 0 | Microsoft Edge |
 | Super + Q | Close window |
+| Super + M | Minimize window |
+| Super + V | Toggle floating |
+| Super + Up | Maximize |
 | Super + Shift + M | Exit Hyprland |

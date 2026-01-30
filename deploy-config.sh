@@ -6,26 +6,36 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SOURCE_HOME="$SCRIPT_DIR/home"
 TARGET_HOME="$HOME"
 
-echo "Deploying user configuration files..."
+echo "Deploying user configuration files (symlinks)..."
 echo "Source: $SOURCE_HOME"
 echo "Target: $TARGET_HOME"
 echo ""
 
-# Enable dotglob to match hidden files
+# Symlink top-level dotfiles (.gitconfig, .zshrc, etc.)
 shopt -s dotglob
+for item in "$SOURCE_HOME"/.*; do
+    basename_item=$(basename "$item")
+    # Skip . and .. and .config (handled separately)
+    [[ "$basename_item" == "." || "$basename_item" == ".." || "$basename_item" == ".config" ]] && continue
+    if [ -e "$item" ]; then
+        echo "Linking $basename_item"
+        ln -sfn "$item" "$TARGET_HOME/$basename_item"
+    fi
+done
+shopt -u dotglob
 
-# Copy all files and directories from home to ~/
-for item in "$SOURCE_HOME"/*; do
+# Ensure ~/.config exists
+mkdir -p "$TARGET_HOME/.config"
+
+# Symlink each subdirectory inside .config
+for item in "$SOURCE_HOME/.config"/*; do
     if [ -e "$item" ]; then
         basename_item=$(basename "$item")
-        echo "Copying $basename_item..."
-        cp -r "$item" "$TARGET_HOME/"
+        echo "Linking .config/$basename_item"
+        ln -sfn "$item" "$TARGET_HOME/.config/$basename_item"
     fi
 done
 
-# Disable dotglob
-shopt -u dotglob
-
 echo ""
-echo "Configuration files deployed successfully!"
-echo "You may need to reload your window manager or applications to see the changes."
+echo "Configuration files linked successfully!"
+echo "Changes to repo files will now apply immediately."
