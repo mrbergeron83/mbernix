@@ -6,8 +6,9 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
+      ./nvidia.nix  # Auto-detects NVIDIA GPU, no-op if not present
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -104,7 +105,7 @@
     enable = true;
     ohMyZsh = {
       enable = true;
-      plugins = [ "git" "history" "zsh-autosuggestions" ];
+      plugins = [ "git" "history" ];
     };
     autosuggestions.enable = true;
     syntaxHighlighting.enable = true;

@@ -5,6 +5,7 @@ set -e
 echo "Copying configuration files to /etc/nixos/..."
 sudo cp configuration.nix /etc/nixos/configuration.nix
 sudo cp hardware-configuration.nix /etc/nixos/hardware-configuration.nix
+sudo cp nvidia.nix /etc/nixos/nvidia.nix
 
 echo "Copying home configuration files..."
 cp -r home/.config/* ~/.config/

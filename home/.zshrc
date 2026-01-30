@@ -36,3 +36,7 @@ source /nix/store/j05fs3gm7cfr6xmcvwam1bxxb4ymsbk5-zsh-syntax-highlighting-0.8.0
 # Bind up/down arrows for history substring search
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+# Aliases
+alias deploy="~/mbernix/deploy.sh"
+alias deploy-config="~/mbernix/deploy-config.sh"
