@@ -89,6 +89,7 @@
     nodejs_24
     bun
     google-chrome
+    microsoft-edge
     alacritty
     tmux
     walker
