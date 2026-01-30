@@ -110,6 +110,11 @@
     syntaxHighlighting.enable = true;
   };
   users.defaultUserShell = pkgs.zsh;
+  users.users.mber = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" ];
+    shell = pkgs.zsh;
+  };
 
   # nix-ld for running pre-built binaries (e.g., Claude)
   programs.nix-ld.enable = true;
