@@ -15,8 +15,8 @@ echo ""
 shopt -s dotglob
 for item in "$SOURCE_HOME"/.*; do
     basename_item=$(basename "$item")
-    # Skip . and .. and .config (handled separately)
-    [[ "$basename_item" == "." || "$basename_item" == ".." || "$basename_item" == ".config" ]] && continue
+    # Skip . and .. and .config/.local (handled separately)
+    [[ "$basename_item" == "." || "$basename_item" == ".." || "$basename_item" == ".config" || "$basename_item" == ".local" ]] && continue
     if [ -e "$item" ]; then
         echo "Linking $basename_item"
         ln -sfn "$item" "$TARGET_HOME/$basename_item"
@@ -35,6 +35,13 @@ for item in "$SOURCE_HOME/.config"/*; do
         ln -sfn "$item" "$TARGET_HOME/.config/$basename_item"
     fi
 done
+
+# Symlink .local/share/applications (custom desktop entries)
+if [ -d "$SOURCE_HOME/.local/share/applications" ]; then
+    mkdir -p "$TARGET_HOME/.local/share"
+    echo "Linking .local/share/applications"
+    ln -sfn "$SOURCE_HOME/.local/share/applications" "$TARGET_HOME/.local/share/applications"
+fi
 
 echo ""
 echo "Configuration files linked successfully!"
