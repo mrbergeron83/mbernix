@@ -13,6 +13,6 @@ echo "Linking home configuration files..."
 "$SCRIPT_DIR/deploy-config.sh"
 
 echo "Rebuilding NixOS..."
-sudo nixos-rebuild switch
+sudo nixos-rebuild switch --flake .#nixos
 
 echo "Deployment complete!"

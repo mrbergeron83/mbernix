@@ -28,15 +28,15 @@
       "locked": {
         "lastModified": 1769745707,
         "narHash": "sha256-VAkhVt7zWMFAqHyx6twJx9nNxVL6R098+RTTlsMr1WA=",
-        "ref": "refs/heads/main",
+        "owner": "mrbergeron83",
+        "repo": "forticlientvpn",
         "rev": "62779b77a7471e25d7f3754e7dc80794a68541ce",
-        "revCount": 3,
-        "type": "git",
-        "url": "ssh://git@github.com/mrbergeron83/forticlientvpn.git"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/mrbergeron83/forticlientvpn.git"
+        "owner": "mrbergeron83",
+        "repo": "forticlientvpn",
+        "type": "github"
       }
     },
     "nixpkgs": {

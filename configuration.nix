@@ -44,11 +44,6 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -92,20 +87,14 @@
     microsoft-edge
     alacritty
     tmux
-    walker
-    waybar
     xterm
     catppuccin-cursors.mochaDark
     vscode
     dotnet-sdk_10
-    nwg-displays
     grim
     slurp
+    gnome-tweaks
   ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  programs.hyprland.enable = true;
 
   # Zsh with oh-my-zsh
   programs.zsh = {
@@ -144,11 +133,12 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
   services.dbus.enable = true;
-  services.greetd.enable = true;
-  services.greetd.settings.default_session = {
-    command = "Hyprland";
-    user = "mber";
-   }; 
+
+  # GNOME Desktop with GDM on Wayland
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.wayland = true;
+  services.xserver.desktopManager.gnome.enable = true; 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -178,12 +168,14 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   security.polkit.enable = true;
+  # GNOME includes its own polkit agent
+
   system.stateVersion = "25.11"; # Did you read the comment?
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   xdg.portal.enable = true;
   xdg.portal.extraPortals = with pkgs; [
-    xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gnome
   ];
 }
 

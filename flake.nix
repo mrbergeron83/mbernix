@@ -6,7 +6,7 @@
 
     # FortiVPN Client
     fortivpn-client = {
-      url = "git+ssh://git@github.com/mrbergeron83/forticlientvpn.git";
+      url = "github:mrbergeron83/forticlientvpn";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
