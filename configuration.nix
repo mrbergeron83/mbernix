@@ -97,6 +97,16 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.hyprland.enable = true;
+
+  # nix-ld for running pre-built binaries (e.g., Claude)
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    openssl
+    curl
+  ];
+
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
   #   enable = true;
