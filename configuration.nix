@@ -30,7 +30,7 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "America/New_York";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -96,6 +96,11 @@
     waybar
     xterm
     catppuccin-cursors.mochaDark
+    vscode
+    dotnet-sdk_10
+    nwg-displays
+    grim
+    slurp
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
