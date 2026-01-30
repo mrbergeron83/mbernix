@@ -1,3 +1,6 @@
+# Add local binaries to PATH
+export PATH="$HOME/.local/bin:$PATH"
+
 # Oh My Zsh configuration
 export ZSH="/nix/store/i8m37fb2m9fcg93ww50gw4m4p04p6ls7-oh-my-zsh-2025-11-09/share/oh-my-zsh"
 
